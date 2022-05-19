@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Interswitch.Interswitch.entities.User;
+import Interswitch.Interswitch.services.RoleService;
 import Interswitch.Interswitch.services.UserService;
 
 @RestController
@@ -17,6 +18,7 @@ import Interswitch.Interswitch.services.UserService;
 
 public class UserController {
 	private final UserService userService;
+
 
 	@Autowired
 	public UserController(UserService userService) {
@@ -27,7 +29,6 @@ public class UserController {
 	public List<User> getUsers() {
 		return userService.getUsers();
 	}
-
 
 	@PostMapping
 	public void addEmployee(@RequestBody User user) {

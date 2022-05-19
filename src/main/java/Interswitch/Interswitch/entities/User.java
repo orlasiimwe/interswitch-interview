@@ -1,8 +1,5 @@
 package Interswitch.Interswitch.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 import Interswitch.Interswitch.interfaces.NotEmpty;
 
@@ -39,24 +34,74 @@ public class User {
 
     private String password;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "userRole", nullable = false, referencedColumnName = "roleCode")
+    @ManyToOne
+    @JoinColumn(name = "roleCode", insertable = false, updatable = false)
     private Role role;
 
-    // @ManyToOne(optional = false)
-    // @JoinColumn(name = "institution", nullable = false, referencedColumnName = "institutionCode")
+    private String roleCode;
+
+    @ManyToOne
+    @JoinColumn(name = "institutionCode", insertable = false, updatable = false)
+    private Institution institution;
+
+    private String institutionCode;
+
+    @ManyToOne
+    @JoinColumn(name = "departmentCode", insertable = false, updatable = false)
+    private Department department;
+
+    private String departmentCode;
+    public String getDepartmentCode() {
+        return departmentCode;
+    }
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
+    }
+
+    public String getInstitutionCode() {
+        return institutionCode;
+    }
+    public void setInstitutionCode(String institutionCode) {
+        this.institutionCode = institutionCode;
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    // @ManyToOne
+    // @JoinColumn(name = "userRole")
+    // private Role role;
+
+    // @OneToMany(targetEntity = Role.class, cascade = CascadeType.ALL)
+    // @JoinColumn(name = "userRole", referencedColumnName = "roleCode")
+    // private List<Role> role;
+
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "userRole",referencedColumnName = "roleCode")
+    // private Role role;
+
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "institution",referencedColumnName = "institutionCode")
     // private Institution institution;
 
     // @ManyToOne(optional = true)
-    // @JoinColumn(name = "bankBranch", nullable = true, referencedColumnName = "bankCode")
+    // @JoinColumn(name = "bankBranch", nullable = true, referencedColumnName =
+    // "bankCode")
     // private Bank bank;
 
     // @ManyToOne(optional = true)
-    // @JoinColumn(name = "corporateType", nullable = true, referencedColumnName = "corporateId")
+    // @JoinColumn(name = "corporateType", nullable = true, referencedColumnName =
+    // "corporateId")
     // private Corporate corporate;
 
     // @ManyToOne(optional = true)
-    // @JoinColumn(name = "department", nullable = true, referencedColumnName = "departmentCode")
+    // @JoinColumn(name = "department", nullable = true, referencedColumnName =
+    // "departmentCode")
     // private Department department;
 
     // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
