@@ -2,7 +2,6 @@ package Interswitch.Interswitch.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,8 +19,8 @@ public class Institution {
     @NotEmpty
     private String institutionName;
 
-    // @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
-    // private List<User> user;
+    @OneToMany(mappedBy = "institution")
+    private List<User> user;
 
     public Institution(String institutionCode, String institutionName) {
         this.institutionCode = institutionCode;
